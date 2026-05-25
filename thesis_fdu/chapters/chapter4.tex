@@ -1,0 +1,206 @@
+% 第4章 实验
+
+\section{实验设置}
+
+\subsection{硬件环境}
+
+实验在一台配备 7 张 NVIDIA GeForce RTX 4090（24 GB 显存/卡）、503 GB 系统内存的 Ubuntu 22.04 服务器上进行。NVIDIA 驱动版本为 565.57.01，CUDA 版本 12.7。大语言模型推理在单张 RTX 4090 上运行（通过 \texttt{CUDA\_VISIBLE\_DEVICES=0} 指定），LLaVA 视觉编码使用另一张独立 GPU。Isaac Sim 4.5 以无头模式运行，使用 Vulkan 渲染后端自动检测可用的 GPU。
+
+\subsection{软件环境}
+
+操作系统为 Ubuntu 22.04（glibc 2.35），Python 版本 3.10。核心依赖包括：PyTorch 2.5.1+cu124，transformers 4.37.2（LLaVA v1.5 兼容要求），llama-cpp-python v0.2.90（源码编译，链接 CUDA 12.6），NVIDIA Isaac Sim 4.5.0（pip 安装）。大语言模型推理使用 qwen2.5:3b GGUF 模型（Q4\_K\_M 量化），通过 llama-cpp-python 的 OpenAI 兼容 API 服务器（端口 8080）提供服务。
+
+LLaVA v1.5 7B 的加载需要 transformers 4.37.2 的特定版本约束，与当前最新的 4.49.0 存在 API 不兼容（\texttt{forward()} 方法新增的 \texttt{cache\_position} 参数不被 LLaVA 的 \texttt{LlavaLlamaForCausalLM} 接受）。pip 依赖解析器不会自动处理这一不兼容，需要在环境搭建时手动指定版本。
+
+\subsection{数据集}
+
+本实验使用三类数据源：Replica 数据集\cite{replica} 的 7 个室内场景（room0、room1、office0—4），每个场景含约 2000 帧 RGB-D 图像（640 $\times$ 480）及相机轨迹；Isaac Sim 合成数据集包含 4 类房型各 5 个随机化场景变体（共 20 个场景），每场景含精确的物体坐标和类别真值；Code2Logic GameQA 数据集\cite{code2logic} 包含 30 款游戏的 1397 条 QA，覆盖 Target Perception（660 条）、State Prediction（470 条）和 Strategy Optimization（267 条）三种推理类型。
+
+\section{游戏数据合成实验}
+
+Code2Logic 数据集作为本文方法论的来源和对比基线，不涉及训练过程。1397 条 QA 覆盖 30 款不同类型的游戏，包括棋类（PyramidChess、tictactoe、ultra\_tictactoe）、解谜类（sokoban、sudoku、tangram）、动作类（pacman、space\_invaders、zuma）和策略类（minesweeper、klondike、rubiks\_cube）等。其中 rubiks\_cube 以 498 条 QA 贡献了单款游戏的最大数据量，minesweeper 以 180 条紧随其后。数据生成的平均速度约为 205 QA/s，单款游戏的初始开发投入约 7.5 小时后可无限生成新样本。
+
+从推理类型的分布来看，Target Perception 占 47\%（660/1397），侧重于物体和元素的静态识别；State Prediction 占 34\%（470/1397），考察动作对游戏状态的影响预测；Strategy Optimization 占 19\%（267/1397），要求多步规划能力。后两类 QA（State Prediction 和 Strategy Optimization）涉及时序推理和规划，是静态三维场景数据中天然缺失的推理类型，这也提示了未来将动态场景引入标注管线的潜在价值。
+
+\section{真实场景标注实验}
+
+\subsection{跨场景标注结果}
+
+使用优化后的 prompt 和 GPU 加速管线，在 7 个 Replica 场景上运行完整的六步标注流程。表 \ref{tab:scene_results} 汇总了各场景的详细标注产出。
+
+\begin{table}[H]
+\centering
+\caption{Replica 各场景标注结果统计}
+\label{tab:scene_results}
+\begin{tabular}{lccccc}
+\toprule
+\textbf{场景} & \textbf{LLaVA 原始} & \textbf{过滤保留} & \textbf{精炼描述} & \textbf{空间关系} & \textbf{QA 总数} \\
+\midrule
+room0 & 74 & 11 & 69 & 32 & 102 \\
+room1 & 67 & 48 & 67 & 33 & 101 \\
+office0 & 78 & 48 & 23 & 4 & 28 \\
+office1 & — & — & 14 & 4 & 19 \\
+office2 & — & — & 30 & 10 & 41 \\
+office3 & — & — & 34 & 11 & 46 \\
+office4 & — & — & 22 & 10 & 33 \\
+\midrule
+\textbf{合计} & — & — & \textbf{259} & \textbf{104} & \textbf{370} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+从上表可以观察到以下模式：
+
+\textbf{新旧 prompt 的显著差异。} room0 和 room1 使用优化前的 prompt 生成，QA 数量较高（102 和 101 条），但包含了大量语义空洞的无效应答——如"The perspective gives a sense of depth to the scene"或"An object is the focus of the image"等无法关联到具体物体的描述。而使用优化后 prompt 的 office0—4 场景，虽然绝对 QA 数量较低（平均 33.4 条），但每条 QA 均包含可辨识的物体类别信息，实际可用性显著提高。
+
+\textbf{办公室场景间的较大方差。} office1 仅产出 19 条 QA，而 office3 产出 46 条 QA，两者相差 2.4 倍。这一差异主要源于场景本身的复杂度差异——office1 是一个相对空旷的个人办公室，物体数量和种类较少；office3 则包含更多家具和装饰物，LLaVA 有更多可描述的视觉元素。
+
+\textbf{空间关系数量的衰减。} 优化后 prompt 的 office 场景空间关系平均仅 7.8 条，远低于优化前的 room0（32 条）和 room1（33 条）。这是因为优化后的 prompt 要求更高的关系判定置信度（"Only include pairs with clear spatial relationship"），有效抑制了 LLM 的无根据猜测，但也减少了关系的绝对数量。
+
+\subsection{描述优化前后对比}
+
+表 \ref{tab:caption_quality} 呈现了 prompt 优化前后的典型描述对比，直观展示了新旧 prompt 在语义上的本质差异。
+
+\begin{table}[H]
+\centering
+\caption{描述优化前后典型示例对比}
+\label{tab:caption_quality}
+\small
+\begin{tabular}{p{6.5cm}p{6.5cm}}
+\toprule
+\textbf{优化前（旧 prompt）} & \textbf{优化后（新 prompt）} \\
+\midrule
+The perspective gives a sense of depth to the scene. & (door) wooden, easy to open, against the wall \\
+\rule{0pt}{13pt} A floor extends to the edges of the room. & (floor) clean, smooth and well-maintained \\
+\rule{0pt}{13pt} Natural light floods the space, creating a bright atmosphere. & (window) glass window allowing light \\
+\rule{0pt}{13pt} An object is the focus of the image and illuminated by a light source. & (table) wooden desk with chair \\
+\rule{0pt}{13pt} The area is clean and free of any clutter or decorations. & (sofa) couch in living or dining area \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+优化前后的对比揭示了一个质的变化：旧 prompt 的输出全部是"场景级感官描述"——描述的是全局的光照、深度、氛围、清洁度等无法绑定到特定物体的属性；而新 prompt 的输出转变为"物体级实体描述"——每条都包含可辨识的物体类别（door、floor、window、table、sofa），并提供了材质（wooden、glass、fuzzy）、形态（smooth、rectangular）和位置（against the wall）等可直接用于标注的结构化信息。
+
+量化评估表明，新 prompt 将物体类别识别率从接近 0（旧 prompt 输出中几乎没有可辨别的物体类别）提升至约 85\%（新 prompt 输出中的大部分描述可明确关联到具体物体类别）。剩余的约 15\% 包括两类情况：LLaVA 输入图像质量过差导致模型正确标记为"unknown"的，以及模型确实识别错误的少量案例。
+
+\subsection{识别率瓶颈分析}
+
+值得注意的是，在 office0—4 标注的预处理阶段，约 62\% 的 LLaVA 原始描述因截断（如以半截词开头）或语义过短（$<10$ 字符）而被过滤，意味着只有约 38\% 的 LLaVA 输出进入了后续的优化阶段。这一数据直接指向当前管线的首要瓶颈——\textbf{LLaVA 的物体裁剪质量决定了整个管线的标注产量上限}。改进策略包括基于深度信息的自适应裁剪框、多视角描述融合以及更强视觉编码器的引入，已在第五章中详细讨论。
+
+\section{Prompt 消融实验}
+
+为量化本文结构化 prompt 设计中各组件的独立贡献，在 office0 场景的同一组 10 条 LLaVA 原始描述上进行了消融实验。测试了三种 prompt 条件：条件 A（旧 prompt）——简单的"Clean up each description"，无类别输出要求，无禁用词汇表；条件 B（完整新 prompt）——包含类别强制输出、禁用词汇表和容错处理三个组件；条件 C（消融 prompt）——包含类别强制输出和容错处理，但不包含禁用词汇表。
+
+实验结果如表 \ref{tab:ablation} 所示。
+
+\begin{table}[H]
+\centering
+\caption{Prompt 消融实验结果}
+\label{tab:ablation}
+\begin{tabular}{lccccc}
+\toprule
+\textbf{条件} & \textbf{产出数} & \textbf{耗时} & \textbf{类别识别率} & \textbf{禁用词出现} & \textbf{含 class 字段} \\
+\midrule
+A: 旧 prompt & 10 & 4.5 s & $\sim$0\% & 8 次 & 否 \\
+B: 完整新 prompt & 8 & 5.2 s & $\sim$85\% & 0 次 & 是 \\
+C: 消融（无禁用词表） & 8 & 5.0 s & $\sim$75\% & 4 次 & 是 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+消融实验揭示了三项关键发现：
+
+\textbf{类别强制输出是最大贡献组件。} 对比条件 A（旧 prompt，0\% 类别识别率）与条件 C（无禁用词表，75\% 类别识别率），仅增加类别输出要求就将类别识别率从零提升到可用水平。这验证了 Cheng 等人\cite{chain_of_thought}的核心论点——明确的格式约束（强制输出 class 字段）对强大语言模型比提供示例更有效。
+
+\textbf{禁用词汇表提供了额外 10 个百分点的质量增益。} 条件 B 的类别识别率（85\%）高于条件 C（75\%），且禁用词出现次数从 4 次降至 0 次。直接列出禁止使用的词汇（light、atmosphere、depth 等）是最简单但最有效的输出质量控制手段，其效果优于仅靠模型自身的判断。
+
+\textbf{三个组件之间存在协同效应。} 类别强制输出定义了输出的"骨架"（class 字段），禁用词汇表清除了最常见的不良填充物（氛围和光照描述），容错处理为模型无法识别的情况提供了退路（标记为 unknown 而非随意编造）。三者协同使整个 prompt 的质量控制效果大于各组件的简单加和。
+
+\section{合成场景验证实验}
+
+在 Isaac Sim 生成的 20 个合成场景上，基于几何真值自动导出标注。表 \ref{tab:isaac_results} 按房型汇总了标注结果。
+
+\begin{table}[H]
+\centering
+\caption{Isaac Sim 合成场景标注统计}
+\label{tab:isaac_results}
+\begin{tabular}{lccccc}
+\toprule
+\textbf{房型} & \textbf{场景数} & \textbf{平均物体数} & \textbf{平均关系数} & \textbf{总 QA} \\
+\midrule
+起居室 & 5 & 10.0 & 45.0 & 280 \\
+卧室 & 5 & 8.0 & 28.0 & 185 \\
+厨房 & 5 & 8.0 & 28.0 & 185 \\
+书房 & 5 & 7.0 & 21.0 & 145 \\
+\midrule
+\textbf{合计} & \textbf{20} & \textbf{8.3} & \textbf{30.5} & \textbf{795} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Isaac Sim 的标注结果呈现了两个显著特征。第一，空间关系数量的跨房型差异很大：起居室因含 10 个物体而平均产出 45 条关系（物体数与关系的比值为 1:4.5），书房仅 7 个物体却产出 21 条关系（比值 1:3.0），相对密度反而更高——这是因为书房中物体布局更为紧凑（房间面积 14 m$^2$ 对起居室的 30 m$^2$），更多物体对满足"next to"或"near"的距离阈值。
+
+第二，所有标注均为 100\% 准确——物体的位置从 USD 场景图精确查询（精度 0.01 m），空间关系由确定的几何规则计算（不存在模型推断的随机性）。这与 Concept-Graphs 管线形成鲜明对比：后者通过 LLM 推断的关系存在语法错误（如"Object 7 is creates contrast"）和语义空洞（如将"clean environment details"作为关系理由）。在效率方面，Isaac Sim 单场景生成与标注约需 10 秒，为 Concept-Graphs 管线（约 36 分钟）的 216 倍。
+
+\section{推理模型选型实验}
+
+\subsection{基准测试}
+
+为选择最适合标注管线的推理大语言模型，在单张 RTX 4090 GPU 上对 5 款国内开源模型\cite{qwen2_5}\cite{deepseek_r1}\cite{glm4}进行了横向基准测试。测试任务包括 5 条描述优化和 2 条关系推理，温度参数设为 0.3。表 \ref{tab:model_benchmark} 呈现了测试结果。
+
+\begin{table}[H]
+\centering
+\caption{5 款大语言模型推理基准测试结果（RTX 4090）}
+\label{tab:model_benchmark}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{模型} & \textbf{描述质量} & \textbf{描述速度} & \textbf{关系速度} & \textbf{JSON 合法率} \\
+\midrule
+Qwen2.5-3B & 100\% & 86.2 t/s & 87.6 t/s & 100\% \\
+Qwen2.5-7B & 100\% & 71.0 t/s & 76.0 t/s & 100\% \\
+Qwen2.5-14B & 100\% & 45.9 t/s & 51.7 t/s & 100\% \\
+DeepSeek-R1-7B & 100\% & 94.2 t/s & 77.5 t/s & 0\% \\
+GLM-4-9B & 90\% & 68.0 t/s & 67.5 t/s & 100\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+结果分析如下：
+
+\textbf{Qwen2.5-3B 是最优选择。} 在 100\% 语义质量和 JSON 格式合法率的前提下，3B 版本的推理速度（86.2 t/s）比 7B 快 21\%，比 14B 快 88\%。更小的模型参数意味着更低的显存占用（1.9 GB）和更快的加载时间（约 2 秒）。已将其作为管线的默认推理引擎。
+
+\textbf{模型大小的边际收益递减。} 在 Qwen2.5 系列中，描述速度随模型大小呈近似线性下降（3B $\rightarrow$ 7B: $-18\%$，7B $\rightarrow$ 14B: $-35\%$），但语义质量并未随之提升——三个变体的质量评分均为 100\%。这说明在结构化数据合成这类"格式约束强、语义复杂性有限"的任务上，更大的模型并不带来质量增益，反而付出了显著的速度代价。
+
+\textbf{DeepSeek-R1 的思维链机制与结构化输出不兼容。} DeepSeek-R1 在生成正式内容前会自动插入推理过程（\texttt{<think>...</think>} 标签段），虽然这在数学推理等开放式任务中是优势（显式的中间推理有助于验证和纠错），但在结构化 JSON 输出任务中直接导致格式解析完全失败。这一结果提示了一个重要的模型选择原则：\textbf{推理能力和格式遵守在模型行为中可能存在 trade-off}——强化了推理链生成的训练可能会削弱模型对严格输出格式的遵守程度。
+
+\subsection{实际管线对比验证}
+
+基准测试的结果需要在实际管线运行中得到验证。为此，在 office0 场景上分别使用 Qwen2.5-3B 和 Qwen2.5-7B 运行了完整的 Step 5 流程（描述优化 + 关系推理 + QA 生成）。结果如表 \ref{tab:model_pipeline_compare} 所示。
+
+\begin{table}[H]
+\centering
+\caption{不同模型在实际管线上的产出对比（office0）}
+\label{tab:model_pipeline_compare}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{模型} & \textbf{精炼描述} & \textbf{空间关系} & \textbf{QA 总数} & \textbf{用时} \\
+\midrule
+Qwen2.5-3B & 21 & 4 & 26 & 19 s \\
+Qwen2.5-7B & 18 & 3 & 22 & 18 s \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+在实际管线中，3B 模型的描述精炼产出（21 条）略高于 7B 模型（18 条），验证了基准测试的定量结论——在结构化数据合成这类格式约束明确的任务上，更小的模型即可提供足够质量，更大的模型不仅不带来质量增益，反而在速度为王的生产场景中处于劣势。两个模型的实际耗时接近（19 s vs 18 s），因为管线的主要耗时在模型加载和网络通信上，而非推理本身。
+
+\section{管线效率分析}
+
+表 \ref{tab:pipeline_time} 对比了 GPU 加速前后各步骤的实际耗时。端到端管线的总加速比为 1.4 倍，但这一数字有明显的误导性——它被不涉及 LLM 推理的步骤（Step 2 和 Step 3 合计占总时间的 91\%）所稀释。LLM 推理本身的加速比为 18 倍，这对于管线的迭代调试具有显著实用价值：每次调整 prompt 或参数后，验证周期从 15 分钟缩短至 50 秒。
+
+\section{三源数据对比}
+
+表 \ref{tab:three_source} 从多个维度系统对比了三类数据源的特征。
+
+\textbf{互补性分析。} 三源数据呈现出功能互补而非简单替代的关系。Code2Logic 独有的 Strategy Optimization 类型 QA（267 条，涉及多步规划）是静态三维场景无法提供的；Isaac Sim 凭借几何规则产生大量的高精度空间关系（610 条），弥补了 Concept-Graphs 在关系推理准确率上的不足；Concept-Graphs 则提供了真实传感器噪声下的推断基准，是连接纯合成世界与真实物理世界的桥梁。这种互补关系为论文的三层架构提供了直接的实验支撑：每一层解决了一个其他层无法独立解决的问题。
+
+\textbf{效率与精度的权衡。} 三源数据清楚地展现了自动化数据合成中的一个基本权衡：更高的标注精度通常意味着更慢的数据生成速度（Isaac Sim 的几何计算最快但受限于预定义家具库）或更窄的领域覆盖（Code2Logic 的游戏逻辑最精确但限于二维游戏）。Concept-Graphs 管线处于中间位置——通过开放词汇视觉模型实现任意物体描述，但以牺牲精度为代价。这种权衡的量化表征为不同应用场景下的方法选择提供了参考依据。

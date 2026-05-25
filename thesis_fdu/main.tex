@@ -1,0 +1,113 @@
+% 复旦大学本科毕业论文
+% 基于 fduthesis 模板 (https://github.com/stone-zeng/fduthesis)
+
+\documentclass[type=bachelor,oneside]{fduthesis}
+
+\fdusetup{
+  style = {
+    cjk-font = windows,
+    bib-backend = bibtex,
+    bib-style = numerical,
+    bib-resource = {refs.bib},
+    declaration-page = {declaration.pdf},
+  },
+  info = {
+    title = {基于小样本学习的机器人决策规划技术研究},
+    title* = {Research on Robot Decision Planning Technology Based on Few-Shot Learning},
+    author = {任立德},
+    supervisor = {戈维峰\quad 副教授},
+    major = {软件工程},
+    department = {计算与智能创新学院},
+    student-id = {22302010001},
+    keywords = {三维场景理解；数据合成；视觉问答；游戏逻辑驱动；仿真验证},
+    keywords* = {3D scene understanding; data synthesis; visual question answering; game-logic-driven; simulation verification},
+    clc = {TP391},
+  }
+}
+
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{float}
+
+% 按本科论文撰写规范覆盖标题字号
+% fduthesis 使用 \sffamily 对应黑体, 不使用 \heiti
+% 章标题: 小二号(18pt)黑体居中
+\ctexset{chapter={
+    format      = {\centering\sffamily\zihao{-2}},
+    beforeskip  = {20pt},
+    afterskip   = {18pt},
+}}
+% 一级标题(1.1): 四号(14pt)黑体
+\ctexset{section={
+    format      = {\sffamily\zihao{4}},
+    beforeskip  = {12pt},
+    afterskip   = {6pt},
+}}
+% 二级标题(1.1.1): 小四(12pt)黑体
+\ctexset{subsection={
+    format      = {\sffamily\zihao{-4}},
+    beforeskip  = {6pt},
+    afterskip   = {3pt},
+}}
+
+\begin{document}
+
+\frontmatter
+\tableofcontents
+
+\begin{abstract}
+三维场景理解任务面临高质量多模态标注数据稀缺的核心困境。人工标注成本高昂——单个室内场景（约 70 个物体）的完整标注可能需要数小时的专家劳动——导致标注数据的规模和多样性严重受限。现有自动生成方法虽然降低了成本，但在关系推理精度和跨场景泛化性上存在明显不足：视觉语言模型倾向于生成光照、氛围等场景级感官描述，而非精确的物体类别和空间关系信息。
+
+针对上述问题，本文提出了一种融合游戏逻辑驱动合成、真实场景理解和仿真真值验证的三层数据自动标注方法。首先，将 Code2Logic 的模板化数据合成范式从二维游戏领域迁移至三维场景，以 Concept-Graphs 为框架整合 GradSLAM、Grounded-SAM、CF-SLAM、LLaVA v1.5 和 GPU 加速的大语言模型推理，构建了从 RGB-D 图像序列到结构化 QA 数据集的端到端六步自动处理管线。通过专门设计的结构化 prompt，将物体类别识别率从接近 0 提升至约 85\%。其次，针对 Ollama 推理引擎存在的 CUDA 版本不兼容问题，通过 llama-cpp-python 源码编译方案将推理吞吐量从 3 tok/s 提升至 99 tok/s（33 倍提升），单场景 LLM 处理时间从 15 分钟降至 50 秒。最后，集成 NVIDIA Isaac Sim 仿真环境构建了合成真值验证系统，通过程序化场景生成和几何规则计算，实现了标注精度的可量化评估。
+
+实验结果表明，本文方法在三类数据源（30 款 2D 游戏、7 个真实室内场景、20 个合成仿真场景）上累计产出 2395 条结构化 QA 数据，覆盖 Target Perception、Spatial Reasoning、Scene Comprehension、State Prediction 和 Strategy Optimization 共 5 种推理类型。跨源对比评估揭示了合成真值对推断标注的可量化校准能力——Isaac Sim 基于几何规则的空间关系准确率为 100\%，而 Concept-Graphs 依赖模型推断的准确率约为 70\%。5 款国内开源大语言模型的基准测试表明，Qwen2.5-3B 在速度和质量的平衡上为最优选择（86 tok/s，100\% 格式合法率）。
+
+本研究为三维场景的自动化标注提供了一套低成本、可扩展、精度可验证的完整解决方案，对视觉语言模型训练数据的构建和多模态场景理解系统的开发具有一定的理论价值和工程参考意义。
+\end{abstract}
+
+\begin{abstract*}
+Three-dimensional scene understanding faces the fundamental challenge of scarce high-quality multimodal annotation data. Manual annotation is prohibitively expensive—a single indoor scene with approximately 70 objects can require hours of expert labor—severely limiting the scale and diversity of training data for vision-language models. Existing automatic methods reduce cost but exhibit significant shortcomings in relational reasoning accuracy and cross-scene generalization. Specifically, current VLMs tend to generate scene-level sensory descriptions (e.g., lighting conditions, atmospheric qualities) rather than precise object-level semantic information.
+
+To address these challenges, this thesis proposes a three-tier data annotation framework that integrates game-logic-driven synthesis, real-world scene understanding, and simulation-based ground-truth verification. The framework begins by migrating the template-based data synthesis paradigm of Code2Logic from 2D games to 3D scenes. Using Concept-Graphs as the integration framework, we construct an end-to-end six-step pipeline that combines GradSLAM (3D reconstruction), Grounded-SAM (2D segmentation), CF-SLAM (object-level mapping), LLaVA v1.5 (multimodal description), and GPU-accelerated LLM inference (description refinement and relation reasoning). A specially designed structured prompt increases the object category recognition rate from near zero to approximately 85\%. Furthermore, we identify and resolve a CUDA version incompatibility in the Ollama inference engine by source-compiling llama-cpp-python, achieving a 33$\times$ throughput improvement (3 $\rightarrow$ 99 tok/s) and reducing per-scene LLM processing time from 15 minutes to 50 seconds. Finally, we integrate NVIDIA Isaac Sim to construct a synthetic ground-truth verification system, enabling quantifiable evaluation of annotation accuracy through procedural scene generation and geometric rule computation.
+
+Experimental results demonstrate that our method produces 2,395 structured QA pairs across three data sources (30 2D games, 7 real indoor scenes, and 20 synthetic simulation scenes), covering 5 reasoning types: Target Perception, Spatial Reasoning, Scene Comprehension, State Prediction, and Strategy Optimization. Cross-source comparative evaluation reveals the quantifiable calibration capability of synthetic ground truth—Isaac Sim achieves 100\% spatial relation accuracy via geometric rules, while Concept-Graphs LLM-inferred accuracy is approximately 70\%. Benchmarking of five Chinese open-source LLMs identifies Qwen2.5-3B as the optimal choice (86 tok/s, 100\% JSON validity).
+
+This work provides a low-cost, scalable, and verifiable solution for automatic 3D scene annotation, offering both theoretical insights and practical engineering value for vision-language model training data construction and multimodal scene understanding system development.
+\end{abstract*}
+
+\mainmatter
+
+\chapter{引言}
+\input{chapters/chapter1}
+
+\chapter{相关工作}
+\input{chapters/chapter2}
+
+\chapter{方法}
+\input{chapters/chapter3}
+
+\chapter{实验}
+\input{chapters/chapter4}
+
+\chapter{总结与展望}
+\input{chapters/chapter5}
+
+\backmatter
+\printbibliography
+
+\begin{acknowledgements}
+本论文的完成离不开许多人的帮助与支持。
+
+首先，衷心感谢我的指导教师戈维峰副教授。在整个毕业设计过程中，戈老师从选题方向、研究方法到论文撰写规范都给予了悉心指导和宝贵建议。
+
+感谢计算与智能创新学院的各位老师，在四年本科学习期间传授的专业知识和科研方法，为本论文的研究工作奠定了坚实的基础。
+
+感谢开源社区的贡献者。本文的管线构建依赖于 GradSLAM、Grounded-SAM、LLaVA、llama.cpp、Ollama 等优秀的开源项目，Code2Logic 论文作者公开的 GameQA 数据集为本研究提供了重要的方法论参考和对比基线。NVIDIA Isaac Sim 团队提供了功能完备的仿真平台。
+
+感谢我的同学和朋友们，在毕设过程中与我讨论技术问题、分享经验心得，在遇到困难时给予鼓励与支持。
+
+最后，感谢我的家人多年来的关怀与付出，你们的理解与支持是我不断前行的动力。
+\end{acknowledgements}
+
+\end{document}

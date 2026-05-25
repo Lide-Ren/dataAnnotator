@@ -1,0 +1,97 @@
+% 第3章 方法
+
+\section{整体架构}
+
+本文提出的三维场景自动标注系统采用三层递进架构，如图\ref{fig:architecture}所示（此处插入架构图）：
+
+\begin{enumerate}[itemsep=4pt]
+  \item \textbf{数据合成层（Code2Logic）}：从游戏源代码中提取状态转移逻辑，通过模板填充自动生成结构化 QA 数据。作为整个系统的方法论基础，提供"代码逻辑 $\rightarrow$ 模板填充 $\rightarrow$ 数据合成"的核心范式。
+  \item \textbf{场景理解层（Concept-Graphs）}：将模板化数据合成方法迁移至真实三维场景。整合 SLAM 重建、物体分割、多模态描述与大语言模型推理，构建从 RGB-D 图像序列到结构化 QA 数据集的端到端六步管线。
+  \item \textbf{真值验证层（Isaac Sim）}：利用仿真环境生成具有精确 ground truth 标注的合成场景。基于 USD 场景图查询和几何规则计算，为标注质量提供可量化的验证基准。
+\end{enumerate}
+
+三个层次的递进关系体现了本文的核心技术路线：游戏逻辑驱动的合成方法首先在二维虚拟世界中得到验证（Code2Logic），随后被迁移到三维真实场景中解决实际问题（Concept-Graphs），最后通过合成真值系统对迁移效果进行量化校准（Isaac Sim）。
+
+\section{Code2Logic：方法论基础}
+
+Code2Logic 的核心思想是将游戏源代码中的显式逻辑结构作为高质量问答数据的自动化生成源。其在本文框架中的角色是提供方法论基础——证明了"代码逻辑 $\rightarrow$ 模板填充 $\rightarrow$ 数据合成"技术路线的可行性。本文不对 Code2Logic 的原生流程进行修改，而是提取其核心的模板化数据合成思想，将其迁移至三维场景标注任务中。
+
+在具体操作上，Code2Logic 生成的数据集包含 30 款游戏的 1397 条问答对，在本文中作为三源对比实验的第一个数据源。该数据源的主要特征包括：100\% 的逻辑准确率（所有答案均由代码规则定义）、零边际生成成本（数据引擎一次投入后无限生成）、覆盖 Target Perception 和 Strategy Optimization 等三维场景数据中不存在的推理类型。
+
+\section{Concept-Graphs：真实场景标注管线}
+
+\subsection{六步管线设计}
+
+真实场景标注管线接收 Replica 数据集标准格式的 RGB-D 图像序列及相机轨迹作为输入，经过六个步骤处理后输出结构化的 QA 数据集。整个管线的数据流如下：
+
+\begin{enumerate}[itemsep=4pt]
+  \item \textbf{三维重建（GradSLAM\cite{gradslam}）}：读取 RGB-D 序列和相机轨迹（4×4 变换矩阵），以 5 帧为步长处理约 400 个关键帧，生成场景的三维点云地图。该步骤的计算复杂度为 $O(N \cdot k)$，其中 $N$ 为帧数，$k$ 为每帧的点数。
+  \item \textbf{二维分割（Grounded-SAM\cite{grounded_sam}）}：在 400 个关键帧上执行开放词汇物体检测和精细化分割。Grounding DINO 负责检测候选物体区域，SAM 对每个候选区域生成像素级掩膜。该步骤是端到端管线中耗时最长的环节，单场景约需 25 分钟。
+  \item \textbf{三维建图（CF-SLAM）}：将二维分割掩膜通过相机内参和外参投影至三维空间，经重叠检测（IoU 过滤）、视觉-文本相似度匹配（CLIP ViT-L/14 特征余弦相似度）和 DBSCAN 聚类（$\epsilon = 0.1$），构建物体级三维场景图。最终输出每个物体的三维位置、包围盒尺寸和语义特征向量。
+  \item \textbf{物体描述（LLaVA v1.5 7B\cite{llava}）}：对每个检测到的物体，从原始 RGB 图像中裁剪对应的二维区域（以物体投影中心为锚点，边长取包围盒对角线长度的 1.5 倍），利用视觉语言模型生成自然语言描述。对于具有多个观测帧的同一物体，取所有帧中置信度最高的裁剪区域作为输入。
+  \item \textbf{描述优化与关系推理（llama.cpp GPU）}：使用大语言模型 qwen2.5:3b\cite{qwen2_5}，通过 llama-cpp-python\cite{llama_cpp} 的 GPU 加速推理服务，以批量方式优化物体描述并推理物体间的空间关系。本步骤是管线中唯一涉及大语言模型推理的环节，其性能优化是本文 GPU 加速工作的核心对象。
+  \item \textbf{QA 数据集生成}：根据优化后的物体描述和空间关系，按照统一的模板格式生成 Target Perception、Spatial Reasoning 和 Scene Comprehension 三类结构化 QA 数据。
+\end{enumerate}
+
+\subsection{结构化 Prompt 设计}
+
+本文的 prompt 设计遵循 Cheng 等人\cite{chain_of_thought} 提出的零样本推理原则——对强大语言模型而言，清晰的格式约束和任务规范比提供少量示例更有效。具体的描述优化 prompt 设计如表 \ref{tab:prompt_full} 所示。
+
+\begin{table}[H]
+\centering
+\caption{描述优化 prompt 完整规范}
+\label{tab:prompt_full}
+\small
+\begin{tabular}{p{14cm}}
+\toprule
+\textbf{System Prompt} \\
+\midrule
+You analyze object crops from an indoor 3D scene. For each item, identify the object and output a concise description. \\
+\textbf{Output format}: JSON array [\{\textquotedblleft id\textquotedblright: number, \textquotedblleft class\textquotedblright: \textquotedblleft category\textquotedblright, \textquotedblleft caption\textquotedblright: \textquotedblleft description\textquotedblright\}] \\
+\textbf{Rules for caption}: (1) Name the object category (door, floor, ceiling, window, table, chair, sofa, cabinet, shelf, light, curtain, pillow, rug, etc.); (2) Describe material, color, and shape (e.g. \textquotedblleft wooden\textquotedblright, \textquotedblleft white\textquotedblright, \textquotedblleft rectangular\textquotedblright); (3) State position if evident (e.g. \textquotedblleft against the wall\textquotedblright, \textquotedblleft in the corner\textquotedblright); (4) ONE sentence, under 20 words. \\
+\textbf{Forbidden words}: light, lighting, shadow, bright, dark, depth, atmosphere, airy, mood, perspective, contrast, illuminate. \\
+\textbf{Handling poor inputs}: If input is too vague, set class=\textquotedblleft unknown\textquotedblright, caption=\textquotedblleft An unidentifiable object.\textquotedblright; if truncated/incomplete, skip the item entirely. \\
+\midrule
+\textbf{Relation Prompt} \\
+\midrule
+You are given objects with positions. Determine spatial relationships between clearly related pairs. \\
+\textbf{Output format}: JSON array [\{\textquotedblleft from\textquotedblright: id1, \textquotedblleft to\textquotedblright: id2, \textquotedblleft relation\textquotedblright: \textquotedblleft type\textquotedblright, \textquotedblleft reason\textquotedblright: \textquotedblleft brief\textquotedblright\}] \\
+\textbf{Valid relations}: \textquotedblleft next to\textquotedblright, \textquotedblleft above\textquotedblright, \textquotedblleft below\textquotedblright, \textquotedblleft behind\textquotedblright, \textquotedblleft in front of\textquotedblright, \textquotedblleft on\textquotedblright \\
+\textbf{Rule}: Only include pairs with clear spatial relationship. Do not guess. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+该 prompt 设计的三个核心原则是：（1）\textbf{强制类别输出}——要求模型显式输出 class 字段，避免输出含糊的场景级描述；（2）\textbf{禁止词汇表}——明确列出禁用词汇，直接排除模型最常产生的不良输出模式；（3）\textbf{容错处理}——为无法识别的输入设计 fallback 策略（标记为 unknown 或直接跳过），避免低质量数据污染整个数据库。预处理阶段还增加了截断检测和最短长度过滤（$<10$ 字符的 caption 直接丢弃），因为原始 LLaVA 输出中约 62\% 存在不同形式的截断或语义不完整。
+
+\subsection{GPU 推理加速方案}
+
+原始管线使用 Ollama 作为本地大语言模型的服务框架。测试发现 Ollama 内置的 CUDA 12.8 库（libggml-cuda.so）与服务器 NVIDIA 驱动（565.57.01，CUDA 12.7）存在版本不兼容，导致推理完全落在 CPU 上。实测 CPU 推理吞吐量约 3 tok/s，单场景（约 70 个物体，10 次 API 请求）的 LLM 处理总时间约 15 分钟。
+
+本文的加速方案如下：首先，利用服务器已有的 CUDA 12.6 完整工具链（nvcc 12.6、cmake 3.22、gcc 11.4），通过源码编译 llama-cpp-python v0.2.90。编译参数为 \texttt{CMAKE\_ARGS="-DGGML\_CUDA=on -DGGML\_OPENMP=off"}，CUDA 架构目标设为 sm\_89（RTX 4090 Ada Lovelace）。编译完成后，将 qwen2.5:3b GGUF 模型（Q4\_K\_M 量化，1.9 GB）的全部 29 个 Transformer 层加载至单张 RTX 4090 的 24 GB 显存，启动 OpenAI 兼容的 HTTP API 服务器（端口 8080），替换原有的 Ollama 端点。
+
+在修改层面，仅需将管线脚本中的 \texttt{OpenAI(base\_url="http://127.0.0.1:11434/v1")} 改为 \texttt{OpenAI(base\_url="http://127.0.0.1:8080/v1")}，其余代码无需任何调整。优化后的推理吞吐量达到 99 tok/s（33 倍提升），单场景 LLM 处理时间降至 50 秒（18 倍加速），GPU 显存占用约 4.2 GB。
+
+\section{Isaac Sim：合成真值验证}
+
+\subsection{程序化场景生成}
+
+本文利用 NVIDIA Isaac Sim 4.5\cite{isaac_sim} 通过 pip 安装在无头模式服务器上，使用 Vulkan 渲染后端。场景生成基于 Replicator Python API，不依赖图形用户界面。
+
+设计了四类典型室内房型模板：起居室（6m $\times$ 5m，10 个物体）、卧室（4.5m $\times$ 4m，8 个物体）、厨房（5m $\times$ 4m，8 个物体）、书房（4m $\times$ 3.5m，7 个物体）。每类房型生成 5 个随机化场景变体，共 20 个合成场景。
+
+场景生成后执行三类域随机化以增加数据多样性：（1）物体位置在房间边界内随机扰动 $x \sim U(-w/2 + 0.3, w/2 - 0.3)$，$y \sim U(-d/2 + 0.3, d/2 - 0.3)$，并通过碰撞检测确保物体间距不小于 0.5 m，避免物理上不合理的穿透；（2）每个物体的材质颜色从 3 种预设变体中随机选取（如 sofa 的三种颜色变体为灰色、深蓝色和米黄色）；（3）光照参数随机化——色温 $T \sim U(4500, 6500)$ K，光照强度 $I \sim U(400, 800)$。
+
+\subsection{真值标注导出}
+
+Isaac Sim 的核心优势在于场景中每个物体都具有精确的三维坐标和类别标签，可直接从 USD 场景图中查询，位置精度达 0.01 m。
+
+空间关系基于几何规则自动计算。具体算法为：对任意两个物体 A 和 B，设水平距离 $d = \|\mathbf{p}_A^{xy} - \mathbf{p}_B^{xy}\|_2$，高度差 $\Delta z = z_A - z_B$。关系判定规则如下：（1）若 $d < 1.5$ m 且 $|\Delta z| < 0.3$ m，判定为 \textquotedblleft next to\textquotedblright；（2）若 $d < 1.5$ m 且 $\Delta z > 0.3$ m，判定为 \textquotedblleft above\textquotedblright；（3）若 $1.5 \leq d < 3.0$ m，判定为 \textquotedblleft near\textquotedblright；（4）若 $d \geq 3.0$ m，根据二维方位角 $\theta = \arctan2(\Delta y, \Delta x)$ 判定方向关系（$\theta \in [0, \pi/4)$ 为右侧，$\theta \in [\pi/4, 3\pi/4)$ 为前方，$\theta \in [3\pi/4, 5\pi/4)$ 为左侧，其余为后方）。
+
+基于上述几何规则，每个场景平均产出约 30 条空间关系，准确率为 100\%——不存在模型推理的不确定性。标注导出采用与 Concept-Graphs 完全相同的 JSON 模板格式，确保两源数据可直接对比分析。
+
+\section{跨源数据评估框架}
+
+为系统比较三类数据源的差异特征，本文设计了包含五个分析维度的统一评估框架：（1）数据量——各数据源产出的 QA 总数及来源数量；（2）QA 类型分布——统计 Target Perception、Spatial Reasoning 等推理类型的分布比例；（3）空间关系类型分布——统计各类空间关系（next to、above、behind 等）的频次和占比；（4）标注精度——对比推断结果与 ground truth，量化类别准确率和关系准确率；（5）管线效率——比较数据获取方式、标注生成机制和单场景处理时间。
+
+该框架不仅用于本文的自身数据分析，也为其他数据合成方法的系统评估提供参考模板。

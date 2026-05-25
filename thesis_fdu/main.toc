@@ -1,0 +1,49 @@
+\contentsline {chapter}{\normalfont \sffamily 摘要}{iii}{chapter*.2}%
+\contentsline {chapter}{\normalfont \sffamily Abstract}{iv}{chapter*.3}%
+\contentsline {chapter}{\normalfont \sffamily \numberline {第1章}引言}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}研究背景与意义}{1}{section.1.1}%
+\contentsline {section}{\numberline {1.2}研究动机与核心问题}{2}{section.1.2}%
+\contentsline {section}{\numberline {1.3}主要贡献}{2}{section.1.3}%
+\contentsline {section}{\numberline {1.4}论文结构}{3}{section.1.4}%
+\contentsline {chapter}{\normalfont \sffamily \numberline {第2章}相关工作}{4}{chapter.2}%
+\contentsline {section}{\numberline {2.1}视觉语言模型}{4}{section.2.1}%
+\contentsline {section}{\numberline {2.2}思维链推理}{4}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Code2Logic：游戏逻辑驱动的数据合成}{5}{section.2.3}%
+\contentsline {section}{\numberline {2.4}三维场景图构建}{6}{section.2.4}%
+\contentsline {section}{\numberline {2.5}合成数据与域随机化}{6}{section.2.5}%
+\contentsline {section}{\numberline {2.6}本章小结}{7}{section.2.6}%
+\contentsline {chapter}{\normalfont \sffamily \numberline {第3章}方法}{8}{chapter.3}%
+\contentsline {section}{\numberline {3.1}整体架构}{8}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Code2Logic：方法论基础}{8}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Concept-Graphs：真实场景标注管线}{8}{section.3.3}%
+\contentsline {subsection}{\fdu@kai \numberline {3.3.1}六步管线设计}{8}{subsection.3.3.1}%
+\contentsline {subsection}{\fdu@kai \numberline {3.3.2}结构化 Prompt 设计}{9}{subsection.3.3.2}%
+\contentsline {subsection}{\fdu@kai \numberline {3.3.3}GPU 推理加速方案}{10}{subsection.3.3.3}%
+\contentsline {section}{\numberline {3.4}Isaac Sim：合成真值验证}{11}{section.3.4}%
+\contentsline {subsection}{\fdu@kai \numberline {3.4.1}程序化场景生成}{11}{subsection.3.4.1}%
+\contentsline {subsection}{\fdu@kai \numberline {3.4.2}真值标注导出}{11}{subsection.3.4.2}%
+\contentsline {section}{\numberline {3.5}跨源数据评估框架}{11}{section.3.5}%
+\contentsline {chapter}{\normalfont \sffamily \numberline {第4章}实验}{13}{chapter.4}%
+\contentsline {section}{\numberline {4.1}实验设置}{13}{section.4.1}%
+\contentsline {subsection}{\fdu@kai \numberline {4.1.1}硬件环境}{13}{subsection.4.1.1}%
+\contentsline {subsection}{\fdu@kai \numberline {4.1.2}软件环境}{13}{subsection.4.1.2}%
+\contentsline {subsection}{\fdu@kai \numberline {4.1.3}数据集}{13}{subsection.4.1.3}%
+\contentsline {section}{\numberline {4.2}游戏数据合成实验}{13}{section.4.2}%
+\contentsline {section}{\numberline {4.3}真实场景标注实验}{14}{section.4.3}%
+\contentsline {subsection}{\fdu@kai \numberline {4.3.1}跨场景标注结果}{14}{subsection.4.3.1}%
+\contentsline {subsection}{\fdu@kai \numberline {4.3.2}描述优化前后对比}{15}{subsection.4.3.2}%
+\contentsline {subsection}{\fdu@kai \numberline {4.3.3}识别率瓶颈分析}{15}{subsection.4.3.3}%
+\contentsline {section}{\numberline {4.4}Prompt 消融实验}{15}{section.4.4}%
+\contentsline {section}{\numberline {4.5}合成场景验证实验}{16}{section.4.5}%
+\contentsline {section}{\numberline {4.6}推理模型选型实验}{17}{section.4.6}%
+\contentsline {subsection}{\fdu@kai \numberline {4.6.1}基准测试}{17}{subsection.4.6.1}%
+\contentsline {subsection}{\fdu@kai \numberline {4.6.2}实际管线对比验证}{18}{subsection.4.6.2}%
+\contentsline {section}{\numberline {4.7}管线效率分析}{18}{section.4.7}%
+\contentsline {section}{\numberline {4.8}三源数据对比}{19}{section.4.8}%
+\contentsline {chapter}{\normalfont \sffamily \numberline {第5章}总结与展望}{20}{chapter.5}%
+\contentsline {section}{\numberline {5.1}工作总结}{20}{section.5.1}%
+\contentsline {section}{\numberline {5.2}研究局限性}{21}{section.5.2}%
+\contentsline {section}{\numberline {5.3}未来工作展望}{21}{section.5.3}%
+\contentsline {section}{\numberline {5.4}结论}{22}{section.5.4}%
+\contentsline {chapter}{\normalfont \sffamily 参考文献}{23}{chapter*.11}%
+\contentsline {chapter}{\normalfont \sffamily 致谢}{25}{chapter*.12}%

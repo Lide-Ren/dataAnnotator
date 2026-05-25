@@ -1,0 +1,126 @@
+\begin{thebibliography}{16}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{#1}
+\expandafter\ifx\csname urlstyle\endcsname\relax\else
+  \urlstyle{same}\fi
+\expandafter\ifx\csname href\endcsname\relax
+  \DeclareUrlCommand\doi{\urlstyle{rm}}
+  \def\eprint#1#2{#2}
+\else
+  \def\doi#1{\href{https://doi.org/#1}{\nolinkurl{#1}}}
+  \let\eprint\href
+\fi
+
+\bibitem[Song et~al.(2023)Song, Wu, Washington, Sadler, Chao, and
+  Su]{llm_planner}
+SONG C~H, WU J, WASHINGTON C, et~al.
+\newblock LLM-planner: few-shot grounded planning for embodied agents with
+  large language models\allowbreak[A/OL].
+\newblock arXiv (2023).
+\newblock \url{https://arxiv.org/abs/2212.04088}.
+
+\bibitem[An et~al.(2025)An, Sun, Liu, Li, Wu, Cheng, Konukoglu, and
+  Belongie]{multimodal_3d}
+AN Z, SUN G, LIU Y, et~al.
+\newblock Multimodality helps few-shot 3D point cloud semantic
+  segmentation\allowbreak[M]//\allowbreak
+Proceedings of the International Conference on Learning Representations (ICLR).
+\newblock 2025.
+
+\bibitem[Tong et~al.(2025)Tong, Tang, Li, Mou, Zhang, Zhao, Wen, Song, Zhan,
+  Lu, et~al.]{code2logic}
+TONG J, TANG J, LI H, et~al.
+\newblock Code2Logic: game-code-driven data synthesis for enhancing VLMs
+  general reasoning\allowbreak[J].
+\newblock Advances in Neural Information Processing Systems, 2025, 38.
+
+\bibitem[Liu et~al.(2023)Liu, Li, Wu, and Lee]{llava}
+LIU H, LI C, WU Q, et~al.
+\newblock Visual instruction tuning\allowbreak[A/OL].
+\newblock arXiv (2023).
+\newblock \url{https://arxiv.org/abs/2304.08485}.
+
+\bibitem[Team(2024)]{qwen2_5}
+TEAM Q.
+\newblock Qwen2.5: a party of foundation models\allowbreak[EB/OL].
+\newblock 2024.
+\newblock \url{https://qwenlm.github.io/blog/qwen2.5/}.
+
+\bibitem[Zhang et~al.(2022)Zhang, Zhang, Li, and Smola]{auto_cot}
+ZHANG Z, ZHANG A, LI M, et~al.
+\newblock Automatic chain of thought prompting in large language
+  models\allowbreak[A/OL].
+\newblock arXiv (2022).
+\newblock \url{https://arxiv.org/abs/2210.03493}.
+
+\bibitem[Cheng et~al.(2025)]{chain_of_thought}
+CHENG X, et~al.
+\newblock Revisiting chain-of-thought prompting: zero-shot can be stronger than
+  few-shot\allowbreak[A/OL].
+\newblock arXiv (2025).
+\newblock \url{https://arxiv.org/abs/2506.14641}.
+
+\bibitem[Zhou et~al.(2024)Zhou, Li, Liang, Zhang, Shahin, Li, and
+  Yang]{design_rationale}
+ZHOU X, LI R, LIANG P, et~al.
+\newblock Using LLMs in generating design rationale for software architecture
+  decisions\allowbreak[A/OL].
+\newblock arXiv (2024).
+\newblock \url{https://arxiv.org/abs/2504.20781}.
+
+\bibitem[Gu et~al.(2024)Gu, Kuwajerwala, Morin, Jatavallabhula, Sen, Agarwal,
+  Rivera, Paul, Ellis, Chellappa, et~al.]{conceptgraphs}
+GU Q, KUWAJERWALA A, MORIN S, et~al.
+\newblock ConceptGraphs: open-vocabulary 3D scene graphs for perception and
+  planning\allowbreak[C]//\allowbreak
+IEEE International Conference on Robotics and Automation (ICRA).
+\newblock 2024.
+
+\bibitem[Jatavallabhula et~al.(2020)]{gradslam}
+JATAVALLABHULA K~M, et~al.
+\newblock gradSLAM: automagically differentiable SLAM\allowbreak[A/OL].
+\newblock arXiv (2020).
+\newblock \url{https://arxiv.org/abs/1910.10672}.
+
+\bibitem[Ren et~al.(2024)Ren, Liu, Zeng, Lin, Li, Cao, Chen, Huang, Chen, Yan,
+  et~al.]{grounded_sam}
+REN T, LIU S, ZENG A, et~al.
+\newblock Grounded SAM: assembling open-world models for diverse visual
+  tasks\allowbreak[A/OL].
+\newblock arXiv (2024).
+\newblock \url{https://arxiv.org/abs/2401.14159}.
+
+\bibitem[Straub et~al.(2019)Straub, Whelan, Ma, Chen, Wijmans, Green, Engel,
+  Mur-Artal, Ren, Verma, et~al.]{replica}
+STRAUB J, WHELAN T, MA L, et~al.
+\newblock The replica dataset: a digital replica of indoor
+  spaces\allowbreak[A/OL].
+\newblock arXiv (2019).
+\newblock \url{https://arxiv.org/abs/1906.05797}.
+
+\bibitem[{NVIDIA Corporation}(2025)]{isaac_sim}
+{NVIDIA Corporation}.
+\newblock NVIDIA isaac sim 4.5\allowbreak[EB/OL].
+\newblock 2025.
+\newblock \url{https://developer.nvidia.com/isaac-sim}.
+
+\bibitem[Gerganov et~al.(2023)Gerganov and contributors]{llama_cpp}
+GERGANOV G, CONTRIBUTORS.
+\newblock llama.cpp: LLM inference in C/C++\allowbreak[EB/OL].
+\newblock 2023.
+\newblock \url{https://github.com/ggerganov/llama.cpp}.
+
+\bibitem[DeepSeek-AI(2025)]{deepseek_r1}
+DEEPSEEK-AI.
+\newblock DeepSeek-R1: incentivizing reasoning capability in LLMs via
+  reinforcement learning\allowbreak[A/OL].
+\newblock arXiv (2025).
+\newblock \url{https://arxiv.org/abs/2501.12948}.
+
+\bibitem[AI(2024)]{glm4}
+AI Z.
+\newblock GLM-4 technical report\allowbreak[EB/OL].
+\newblock 2024.
+\newblock \url{https://bigmodel.cn}.
+
+\end{thebibliography}
