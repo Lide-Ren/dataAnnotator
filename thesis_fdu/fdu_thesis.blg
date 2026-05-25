@@ -1,6 +1,6 @@
 This is BibTeX, Version 0.99e
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
-The top-level auxiliary file: main.aux
+The top-level auxiliary file: fdu_thesis.aux
 Reallocating 'name_of_file' (item size: 1) to 18 items.
 The style file: gbt7714-numerical.bst
 Reallocating 'name_of_file' (item size: 1) to 9 items.
@@ -17,44 +17,44 @@ Reallocating 'glb_str_ptr' (item size: 4) to 20 items.
 Reallocating 'global_strs' (item size: 1) to 4000000 items.
 Reallocating 'singl_function' (item size: 4) to 100 items.
 Database file #1: refs.bib
-You've used 16 entries,
+You've used 13 entries,
             6859 wiz_defined-function locations,
-            1297 strings with 12324 characters,
-and the built_in function-call counts, 1495173 in all, are:
-= -- 156306
-> -- 16403
-< -- 120323
-+ -- 6168
-- -- 2366
-* -- 5462
-:= -- 24935
-add.period$ -- 61
-call.type$ -- 16
-change.case$ -- 26
-chr.to.int$ -- 106713
-cite$ -- 16
-duplicate$ -- 273066
-empty$ -- 1215
-format.name$ -- 491
-if$ -- 292995
-int.to.chr$ -- 1843
-int.to.str$ -- 17
+            1285 strings with 12044 characters,
+and the built_in function-call counts, 1298436 in all, are:
+= -- 134644
+> -- 14862
+< -- 105088
++ -- 5536
+- -- 2068
+* -- 4715
+:= -- 22247
+add.period$ -- 49
+call.type$ -- 13
+change.case$ -- 22
+chr.to.int$ -- 92689
+cite$ -- 13
+duplicate$ -- 236044
+empty$ -- 998
+format.name$ -- 445
+if$ -- 254187
+int.to.chr$ -- 1582
+int.to.str$ -- 14
 missing$ -- 0
-newline$ -- 109
-num.names$ -- 48
-pop$ -- 27763
+newline$ -- 91
+num.names$ -- 39
+pop$ -- 24530
 preamble$ -- 1
-purify$ -- 148
+purify$ -- 125
 quote$ -- 0
-skip$ -- 38336
+skip$ -- 33210
 stack$ -- 0
-substring$ -- 228288
-swap$ -- 188066
-text.length$ -- 306
+substring$ -- 197935
+swap$ -- 163849
+text.length$ -- 270
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 176
+type$ -- 143
 warning$ -- 0
-while$ -- 3282
+while$ -- 2839
 width$ -- 0
-write$ -- 228
+write$ -- 188

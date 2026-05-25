@@ -29,6 +29,8 @@
 \usepackage{booktabs}
 \usepackage{longtable}
 \usepackage{float}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, positioning, decorations.pathreplacing}
 
 % 按本科论文撰写规范覆盖标题字号
 % fduthesis 使用 \sffamily 对应黑体, 不使用 \heiti
@@ -109,5 +111,87 @@ This work provides a low-cost, scalable, and verifiable solution for automatic 3
 
 最后，感谢我的家人多年来的关怀与付出，你们的理解与支持是我不断前行的动力。
 \end{acknowledgements}
+
+\appendix
+
+\chapter{完整 Prompt 模板}
+
+以下为本文在描述优化和关系推理阶段使用的完整 prompt 文本。
+
+\section*{A.1 描述优化 System Prompt}
+
+\begin{verbatim}
+You analyze object crops from an indoor 3D scene.
+For each item, identify the object and output a concise description.
+
+Output ONLY a JSON array:
+[{"id": <number>, "class": "<category>", "caption": "<description>"}]
+
+RULES for caption:
+- Name the object category (door, floor, ceiling, window, table,
+  chair, sofa, cabinet, shelf, light, curtain, pillow, rug, etc.)
+- Describe material/color/shape (e.g. "wooden", "white", "rectangular")
+- State its position if evident (e.g. "against the wall", "in the corner")
+- Keep it to ONE sentence, under 20 words
+
+FORBIDDEN - never use these words:
+  light, lighting, shadow, bright, dark, depth, atmosphere,
+  airy, mood, perspective, contrast, illuminate
+
+If the input text is too vague to identify the object,
+set class="unknown" and caption="An unidentifiable object."
+
+If the text is clearly truncated/incomplete, skip the item entirely.
+\end{verbatim}
+
+\section*{A.2 关系推理 Prompt}
+
+\begin{verbatim}
+You are given a list of objects with their positions in a room.
+Determine spatial relationships between pairs that are clearly related.
+
+Output ONLY a JSON array:
+[{"from": <id1>, "to": <id2>, "relation": "<type>", "reason": "<brief>"}]
+
+Relation types: "next to" | "above" | "below" | "behind" |
+                "in front of" | "on"
+
+Only include pairs that have a clear spatial relationship. Do not guess.
+\end{verbatim}
+
+\chapter{QA 数据 JSON Schema}
+
+\section*{B.1 Target Perception（目标感知）}
+
+\begin{verbatim}
+{
+  "data_id": "<scene>-tp-<id:04d>",
+  "qa_type": "Target Perception",
+  "question": "What is object <id> in this scene?",
+  "answer": "<refined caption>"
+}
+\end{verbatim}
+
+\section*{B.2 Spatial Reasoning（空间推理）}
+
+\begin{verbatim}
+{
+  "data_id": "<scene>-sp-<src:04d>-<dst:04d>",
+  "qa_type": "Spatial Reasoning",
+  "question": "Where is object <dst> relative to object <src>?",
+  "answer": "Object <dst> is <relation> object <src>."
+}
+\end{verbatim}
+
+\section*{B.3 Scene Comprehension（场景理解）}
+
+\begin{verbatim}
+{
+  "data_id": "<scene>-sc",
+  "qa_type": "Scene Comprehension",
+  "question": "Describe the overall layout of this scene.",
+  "answer": "A <room_type> with <N> objects: <summary>..."
+}
+\end{verbatim}
 
 \end{document}

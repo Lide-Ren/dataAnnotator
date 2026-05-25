@@ -1,9 +1,9 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.12) (preloaded format=xelatex 2026.5.18)  25 MAY 2026 17:43
+This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.12) (preloaded format=xelatex 2026.5.18)  26 MAY 2026 00:44
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**./main.tex
-(main.tex
+**C:/Users/任立德/AppData/Local/Temp/test_min.tex
+(C:/Users/任立德/AppData/Local/Temp/test_min.tex
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-12-24>
 (fduthesis.cls
@@ -770,84 +770,6 @@ LaTeX template Info: Declaring template type 'fdu/cover' taking 0 argument(s)
 \c@endtheoremctr=\count359
 \c@theorem=\count360
 )
-(D:\Ksoftware\MikTex\tex/latex/pdfpages\pdfpages.sty
-Package: pdfpages 2026/03/30 v0.6h Insert pages of external PDF documents (AM)
-
-(D:\Ksoftware\MikTex\tex/latex/tools\calc.sty
-Package: calc 2025/03/01 v4.3b Infix arithmetic (KKT,FJ)
-\calc@Acount=\count361
-\calc@Bcount=\count362
-\calc@Adimen=\dimen274
-\calc@Bdimen=\dimen275
-\calc@Askip=\skip112
-\calc@Bskip=\skip113
-LaTeX Info: Redefining \setlength on input line 86.
-LaTeX Info: Redefining \addtolength on input line 87.
-\calc@Ccount=\count363
-\calc@Cskip=\skip114
-)
-(D:\Ksoftware\MikTex\tex/latex/eso-pic\eso-pic.sty
-Package: eso-pic 2025/12/10 v3.0d eso-pic (RN)
-\ESO@tempdima=\dimen276
-\ESO@tempdimb=\dimen277
-)
-(D:\Ksoftware\MikTex\tex/latex/etoolbox\etoolbox.sty
-Package: etoolbox 2025/10/02 v2.5m e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count364
-)
-\AM@pagewidth=\dimen278
-\AM@pageheight=\dimen279
-\AM@fboxrule=\dimen280
-
-(D:\Ksoftware\MikTex\tex/latex/pdfpages\ppxetex.def
-File: ppxetex.def 2026/03/30 v0.6h Pdfpages driver for XeTeX (AM)
-)
-\pdfpages@includegraphics@status=\count365
-\AM@pagebox=\box64
-\AM@global@opts=\toks45
-\AM@pagecnt=\count366
-\AM@toc@title=\toks46
-\AM@lof@heading=\toks47
-\c@AM@survey=\count367
-\AM@templatesizebox=\box65
-)
-(D:\Ksoftware\MikTex\tex/latex/enumitem\enumitem.sty
-Package: enumitem 2025/02/06 v3.11 Customized lists
-\labelindent=\skip115
-\enit@outerparindent=\dimen281
-\enit@toks=\toks48
-\enit@inbox=\box66
-\enit@count@id=\count368
-\enitdp@description=\count369
-)
-(D:\Ksoftware\MikTex\tex/latex/booktabs\booktabs.sty
-Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
-\heavyrulewidth=\dimen282
-\lightrulewidth=\dimen283
-\cmidrulewidth=\dimen284
-\belowrulesep=\dimen285
-\belowbottomsep=\dimen286
-\aboverulesep=\dimen287
-\abovetopsep=\dimen288
-\cmidrulesep=\dimen289
-\cmidrulekern=\dimen290
-\defaultaddspace=\dimen291
-\@cmidla=\count370
-\@cmidlb=\count371
-\@aboverulesep=\dimen292
-\@belowrulesep=\dimen293
-\@thisruleclass=\count372
-\@lastruleclass=\count373
-\@thisrulewidth=\dimen294
-)
-(D:\Ksoftware\MikTex\tex/latex/float\float.sty
-Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count374
-\float@exts=\toks49
-\float@box=\box67
-\@float@everytoks=\toks50
-\@floatcapt=\box68
-)
 
 Package fontspec Info: 
 (fontspec)             Font family 'XITS(0)' created for font 'XITS' with
@@ -898,11 +820,11 @@ p;"
 
 
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
-(Font)                  OT1/cmr/m/n --> TU/XITS(1)/m/n on input line 54.
+(Font)                  OT1/cmr/m/n --> TU/XITS(1)/m/n on input line 3.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> TU/XITS(1)/m/it on input line 54.
+(Font)                  OT1/cmr/m/it --> TU/XITS(1)/m/it on input line 3.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> TU/XITS(1)/b/n on input line 54.
+(Font)                  OT1/cmr/bx/n --> TU/XITS(1)/b/n on input line 3.
 
 Package fontspec Info: 
 (fontspec)             Font family 'texgyreheros(0)' created for font
@@ -974,11 +896,11 @@ e=dflt;"
 e=dflt;+smcp;"
 
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> TU/texgyreheros(1)/m/n on input line 5
-4.
+(Font)                  OT1/cmss/m/n --> TU/texgyreheros(1)/m/n on input line 3
+.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
 (Font)                  OT1/cmss/bx/n --> TU/texgyreheros(1)/b/n on input line 
-54.
+3.
 
 Package fontspec Info: 
 (fontspec)             Font family 'texgyrecursor(0)' created for font
@@ -1072,10 +994,10 @@ ge=dflt;-liga;+smcp;"
 
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
 (Font)                  OT1/cmtt/m/n --> TU/texgyrecursor(1)/m/n on input line 
-54.
+3.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 (Font)                  OT1/cmtt/m/n --> TU/texgyrecursor(1)/b/n on input line 
-54.
+3.
 
 Package fontspec Info: 
 (fontspec)             Font family 'XITSMath-Regular.otf(0)' created for font
@@ -1113,15 +1035,15 @@ sty=1;"
 (fontspec)             <->"[XITSMath-Bold.otf]/OT:script=math;language=dflt;"
 
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `normal' on input line 54.
+(Font)              `operators' in the math version `normal' on input line 3.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
 (Font)                  OT1/cmr/m/n --> TU/XITSMath-Regular.otf(1)/m/n on input
- line 54.
+ line 3.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `bold' on input line 54.
+(Font)              `operators' in the math version `bold' on input line 3.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
 (Font)                  OT1/cmr/bx/n --> TU/XITSMath-Regular.otf(1)/b/n on inpu
-t line 54.
+t line 3.
 
 Package fontspec Info: 
 (fontspec)             XITSMath-Regular scale = 1.0001.
@@ -1175,15 +1097,15 @@ T:script=math;language=dflt;+ssty=1;"
 e=dflt;"
 
 LaTeX Font Info:    Encoding `OMS' has changed to `TU' for symbol font
-(Font)              `symbols' in the math version `normal' on input line 54.
+(Font)              `symbols' in the math version `normal' on input line 3.
 LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
 (Font)                  OMS/cmsy/m/n --> TU/XITSMath-Regular.otf(2)/m/n on inpu
-t line 54.
+t line 3.
 LaTeX Font Info:    Encoding `OMS' has changed to `TU' for symbol font
-(Font)              `symbols' in the math version `bold' on input line 54.
+(Font)              `symbols' in the math version `bold' on input line 3.
 LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
 (Font)                  OMS/cmsy/b/n --> TU/XITSMath-Regular.otf(2)/b/n on inpu
-t line 54.
+t line 3.
 
 Package fontspec Info: 
 (fontspec)             XITSMath-Regular scale = 0.9999.
@@ -1231,27 +1153,26 @@ T:script=math;language=dflt;+ssty=1;"
 e=dflt;"
 
 LaTeX Font Info:    Encoding `OMX' has changed to `TU' for symbol font
-(Font)              `largesymbols' in the math version `normal' on input line 5
-4.
+(Font)              `largesymbols' in the math version `normal' on input line 3
+.
 LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
 (Font)                  OMX/cmex/m/n --> TU/XITSMath-Regular.otf(3)/m/n on inpu
-t line 54.
+t line 3.
 LaTeX Font Info:    Encoding `OMX' has changed to `TU' for symbol font
-(Font)              `largesymbols' in the math version `bold' on input line 54.
-
+(Font)              `largesymbols' in the math version `bold' on input line 3.
 LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
 (Font)                  OMX/cmex/m/n --> TU/XITSMath-Regular.otf(3)/b/n on inpu
-t line 54.
+t line 3.
 
 (D:\Ksoftware\MikTex\tex/latex/gbt7714\gbt7714.sty
 Package: gbt7714 2026/01/15 v2.1.9 GB/T 7714 BibTeX Style
 
 (D:\Ksoftware\MikTex\tex/latex/natbib\natbib.sty
 Package: natbib 2010/09/13 8.31b (PWD, AO)
-\bibhang=\skip116
-\bibsep=\skip117
+\bibhang=\skip112
+\bibsep=\skip113
 LaTeX Info: Redefining \cite on input line 694.
-\c@NAT@ctr=\count375
+\c@NAT@ctr=\count361
 )
 (D:\Ksoftware\MikTex\tex/latex/url\url.sty
 \Urlmuskip=\muskip19
@@ -1298,15 +1219,19 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 (D:\Ksoftware\MikTex\tex/latex/kvoptions\kvoptions.sty
 Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
 ))
-\c@section@level=\count376
+\c@section@level=\count362
+)
+(D:\Ksoftware\MikTex\tex/latex/etoolbox\etoolbox.sty
+Package: etoolbox 2025/10/02 v2.5m e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count363
 )
 (D:\Ksoftware\MikTex\tex/generic/stringenc\stringenc.sty
 Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO
 )
 )
-\@linkdim=\dimen295
-\Hy@linkcounter=\count377
-\Hy@pagecounter=\count378
+\@linkdim=\dimen274
+\Hy@linkcounter=\count364
+\Hy@pagecounter=\count365
 
 (D:\Ksoftware\MikTex\tex/latex/hyperref\pd1enc.def
 File: pd1enc.def 2025-07-12 v7.01o Hyperref: PDFDocEncoding definition (HO)
@@ -1314,7 +1239,7 @@ File: pd1enc.def 2025-07-12 v7.01o Hyperref: PDFDocEncoding definition (HO)
 (D:\Ksoftware\MikTex\tex/generic/intcalc\intcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
-\Hy@SavedSpaceFactor=\count379
+\Hy@SavedSpaceFactor=\count366
 
 (D:\Ksoftware\MikTex\tex/latex/hyperref\puenc.def
 File: puenc.def 2025-07-12 v7.01o Hyperref: PDF Unicode definition (HO)
@@ -1327,9 +1252,9 @@ Package hyperref Info: Plain pages OFF on input line 4210.
 Package hyperref Info: Backreferencing OFF on input line 4215.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4462.
-\c@Hy@tempcnt=\count380
+\c@Hy@tempcnt=\count367
 LaTeX Info: Redefining \url on input line 4801.
-\XeTeXLinkMargin=\dimen296
+\XeTeXLinkMargin=\dimen275
 
 (D:\Ksoftware\MikTex\tex/generic/bitset\bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
@@ -1338,9 +1263,9 @@ Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
 )
 ))
-\Fld@menulength=\count381
-\Field@Width=\dimen297
-\Fld@charsize=\dimen298
+\Fld@menulength=\count368
+\Field@Width=\dimen276
+\Fld@charsize=\dimen277
 Package hyperref Info: Hyper figures OFF on input line 6078.
 Package hyperref Info: Link nesting OFF on input line 6083.
 Package hyperref Info: Hyper index ON on input line 6086.
@@ -1348,19 +1273,19 @@ Package hyperref Info: backreferencing OFF on input line 6093.
 Package hyperref Info: Link coloring OFF on input line 6098.
 Package hyperref Info: Link coloring with OCG OFF on input line 6103.
 Package hyperref Info: PDF/A mode OFF on input line 6108.
-\Hy@abspage=\count382
-\c@Item=\count383
-\c@Hfootnote=\count384
+\Hy@abspage=\count369
+\c@Item=\count370
+\c@Hfootnote=\count371
 )
 Package hyperref Info: Driver (autodetected): hxetex.
 
 (D:\Ksoftware\MikTex\tex/latex/hyperref\hxetex.def
 File: hxetex.def 2025-07-12 v7.01o Hyperref driver for XeTeX
-\pdfm@box=\box69
-\c@Hy@AnnotLevel=\count385
-\HyField@AnnotCount=\count386
-\Fld@listcount=\count387
-\c@bookmark@seq@number=\count388
+\pdfm@box=\box64
+\c@Hy@AnnotLevel=\count372
+\HyField@AnnotCount=\count373
+\Fld@listcount=\count374
+\c@bookmark@seq@number=\count375
 
 (D:\Ksoftware\MikTex\tex/latex/rerunfilecheck\rerunfilecheck.sty
 Package: rerunfilecheck 2025-06-21 v1.11 Rerun checks for auxiliary files (HO)
@@ -1371,16 +1296,16 @@ Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 84.
 )
-\Hy@SectionHShift=\skip118
+\Hy@SectionHShift=\skip114
 )
-Package hyperref Info: Option `bookmarksnumbered' set `true' on input line 54.
-Package hyperref Info: Option `psdextra' set `true' on input line 54.
+Package hyperref Info: Option `bookmarksnumbered' set `true' on input line 3.
+Package hyperref Info: Option `psdextra' set `true' on input line 3.
 
 (D:\Ksoftware\MikTex\tex/latex/hyperref\psdextra.def
 File: psdextra.def 2025-07-12 v7.01o Hyperref: Additions to PDF string support
 )
-Package hyperref Info: Option `unicode' set `true' on input line 54.
-Package hyperref Info: Option `colorlinks' set `true' on input line 54.
+Package hyperref Info: Option `unicode' set `true' on input line 3.
+Package hyperref Info: Option `colorlinks' set `true' on input line 3.
 
 Package fontspec Info: 
 (fontspec)             Could not resolve font "SimSun/B" (it probably doesn't
@@ -1413,30 +1338,30 @@ t={*}].
 (fontspec)             - 'italic' (m/it) with NFSS spec.:
 (fontspec)             <->"SimSun/OT:script=hani;language=dflt;"
 
- (main.aux)
-\openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 54.
-LaTeX Font Info:    ... okay on input line 54.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 54.
-LaTeX Font Info:    ... okay on input line 54.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 54.
-LaTeX Font Info:    ... okay on input line 54.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 54.
-LaTeX Font Info:    ... okay on input line 54.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 54.
-LaTeX Font Info:    ... okay on input line 54.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 54.
-LaTeX Font Info:    ... okay on input line 54.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 54.
-LaTeX Font Info:    ... okay on input line 54.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 54.
-LaTeX Font Info:    ... okay on input line 54.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 54.
-LaTeX Font Info:    ... okay on input line 54.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 54.
-LaTeX Font Info:    ... okay on input line 54.
+No file test_min.aux.
+\openout1 = `test_min.aux'.
 
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
 *geometry* verbose mode - [ preamble ] result:
@@ -1472,70 +1397,58 @@ LaTeX Font Info:    ... okay on input line 54.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 Package caption Info: Begin \AtBeginDocument code.
-Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
 Package caption Info: End \AtBeginDocument code.
-(D:\Ksoftware\MikTex\tex/latex/pdflscape\pdflscape.sty
-Package: pdflscape 2022-10-27 v0.13 Display of landscape pages in PDF
-
-(D:\Ksoftware\MikTex\tex/latex/pdflscape\pdflscape-nometadata.sty
-Package: pdflscape-nometadata 2022-10-28 v0.13 Display of landscape pages in PD
-F (HO)
-
-(D:\Ksoftware\MikTex\tex/latex/graphics\lscape.sty
-Package: lscape 2020/05/28 v3.02 Landscape Pages (DPC)
-)
-Package pdflscape Info: Auto-detected driver: dvipdfm (xetex) on input line 98.
-
-))
-Package hyperref Info: Link coloring ON on input line 54.
- (main.out) (main.out)
+Package hyperref Info: Link coloring ON on input line 3.
 \@outlinefile=\write3
-\openout3 = `main.out'.
+\openout3 = `test_min.out'.
+
+
+Package hyperref Warning: Rerun to get /PageLabels entry.
 
 LaTeX Font Info:    Font shape `TU/XITSMath-Regular.otf(2)/m/n' will be
-(Font)              scaled to size 9.0347pt on input line 54.
+(Font)              scaled to size 9.0347pt on input line 3.
 LaTeX Font Info:    Font shape `TU/XITSMath-Regular.otf(2)/m/n' will be
-(Font)              scaled to size 6.00064pt on input line 54.
+(Font)              scaled to size 6.00064pt on input line 3.
 LaTeX Font Info:    Font shape `TU/XITSMath-Regular.otf(2)/m/n' will be
-(Font)              scaled to size 5.00053pt on input line 54.
+(Font)              scaled to size 5.00053pt on input line 3.
 LaTeX Font Info:    Font shape `TU/XITSMath-Regular.otf(3)/m/n' will be
-(Font)              scaled to size 9.03276pt on input line 54.
+(Font)              scaled to size 9.03276pt on input line 3.
 LaTeX Font Info:    Font shape `TU/XITSMath-Regular.otf(3)/m/n' will be
-(Font)              scaled to size 5.99936pt on input line 54.
+(Font)              scaled to size 5.99936pt on input line 3.
 LaTeX Font Info:    Font shape `TU/XITSMath-Regular.otf(3)/m/n' will be
-(Font)              scaled to size 4.99947pt on input line 54.
+(Font)              scaled to size 4.99947pt on input line 3.
 File: fudan-name.pdf Graphic file (type pdf)
 <use fudan-name.pdf>
 LaTeX Font Info:    Font shape `TU/XITSMath-Regular.otf(2)/m/n' will be
-(Font)              scaled to size 18.06941pt on input line 54.
+(Font)              scaled to size 18.06941pt on input line 3.
 LaTeX Font Info:    Font shape `TU/XITSMath-Regular.otf(2)/m/n' will be
-(Font)              scaled to size 15.05785pt on input line 54.
+(Font)              scaled to size 15.05785pt on input line 3.
 LaTeX Font Info:    Font shape `TU/XITSMath-Regular.otf(2)/m/n' will be
-(Font)              scaled to size 12.04628pt on input line 54.
+(Font)              scaled to size 12.04628pt on input line 3.
 LaTeX Font Info:    Font shape `TU/XITSMath-Regular.otf(3)/m/n' will be
-(Font)              scaled to size 18.06555pt on input line 54.
+(Font)              scaled to size 18.06555pt on input line 3.
 LaTeX Font Info:    Font shape `TU/XITSMath-Regular.otf(3)/m/n' will be
-(Font)              scaled to size 15.05463pt on input line 54.
+(Font)              scaled to size 15.05463pt on input line 3.
 LaTeX Font Info:    Font shape `TU/XITSMath-Regular.otf(3)/m/n' will be
-(Font)              scaled to size 12.0437pt on input line 54.
+(Font)              scaled to size 12.0437pt on input line 3.
 LaTeX Font Info:    Font shape `TU/XITSMath-Regular.otf(2)/m/n' will be
-(Font)              scaled to size 14.05399pt on input line 54.
+(Font)              scaled to size 14.05399pt on input line 3.
 LaTeX Font Info:    Font shape `TU/XITSMath-Regular.otf(2)/m/n' will be
-(Font)              scaled to size 10.54048pt on input line 54.
+(Font)              scaled to size 10.54048pt on input line 3.
 LaTeX Font Info:    Font shape `TU/XITSMath-Regular.otf(2)/m/n' will be
-(Font)              scaled to size 7.52892pt on input line 54.
+(Font)              scaled to size 7.52892pt on input line 3.
 LaTeX Font Info:    Font shape `TU/XITSMath-Regular.otf(3)/m/n' will be
-(Font)              scaled to size 14.05098pt on input line 54.
+(Font)              scaled to size 14.05098pt on input line 3.
 LaTeX Font Info:    Font shape `TU/XITSMath-Regular.otf(3)/m/n' will be
-(Font)              scaled to size 10.53824pt on input line 54.
+(Font)              scaled to size 10.53824pt on input line 3.
 LaTeX Font Info:    Font shape `TU/XITSMath-Regular.otf(3)/m/n' will be
-(Font)              scaled to size 7.52731pt on input line 54.
-
+(Font)              scaled to size 7.52731pt on input line 3.
 [1
 
 
 ] [2]
+第1章
 
 Package fontspec Info: 
 (fontspec)             Could not resolve font "SimHei/B" (it probably doesn't
@@ -1568,200 +1481,42 @@ t={*}].
 (fontspec)             - 'italic' (m/it) with NFSS spec.:
 (fontspec)             <->"SimHei/OT:script=hani;language=dflt;"
 
- (main.toc
-LaTeX Font Info:    Font shape `TU/XITSMath-Regular.otf(2)/m/n' will be
-(Font)              scaled to size 9.03471pt on input line 4.
-LaTeX Font Info:    Font shape `TU/XITSMath-Regular.otf(2)/m/n' will be
-(Font)              scaled to size 7.22777pt on input line 4.
-LaTeX Font Info:    Font shape `TU/XITSMath-Regular.otf(3)/m/n' will be
-(Font)              scaled to size 9.03278pt on input line 4.
-LaTeX Font Info:    Font shape `TU/XITSMath-Regular.otf(3)/m/n' will be
-(Font)              scaled to size 7.22623pt on input line 4.
-
-Package fontspec Info: 
-(fontspec)             Could not resolve font "KaiTi/B" (it probably doesn't
-(fontspec)             exist).
+[1
 
 
-Package fontspec Info: 
-(fontspec)             Could not resolve font "KaiTi/I" (it probably doesn't
-(fontspec)             exist).
-
-
-Package fontspec Info: 
-(fontspec)             Could not resolve font "KaiTi/BI" (it probably doesn't
-(fontspec)             exist).
-
-
-Package fontspec Info: 
-(fontspec)             Font family 'KaiTi(0)' created for font 'KaiTi' with
-(fontspec)             options
-(fontspec)             [Script={CJK},UprightFont={*},AutoFakeBold={4},ItalicFon
-t={*}].
-(fontspec)              
-(fontspec)              This font family consists of the following NFSS
-(fontspec)             series/shapes:
-(fontspec)              
-(fontspec)             - 'normal' (m/n) with NFSS spec.:
-(fontspec)             <->"KaiTi/OT:script=hani;language=dflt;"
-(fontspec)             - 'bold' (b/n) with NFSS spec.:
-(fontspec)             <->"KaiTi/OT:script=hani;language=dflt;embolden=4;"
-(fontspec)             - 'italic' (m/it) with NFSS spec.:
-(fontspec)             <->"KaiTi/OT:script=hani;language=dflt;"
-
- [1
-
-
-])
-\tf@toc=\write4
-\openout4 = `main.toc'.
-
- [2] [3
-
-] [4
-
-] [5]
-第1章
-(chapters/chapter1.tex [1
-
-
-] [2]) [3]
-第2章
-(chapters/chapter2.tex [4
 
 ]
-Overfull \hbox (1.6077pt too wide) in paragraph at lines 21--22
-[]\TU/XITS(0)/m/n/12.045 Zhou \TU/SimSun(0)/m/n/12.045 等 人 探 索 了 使 用 大 语 言 模 型 
-为 软 件 架 构 决 策 生 成 设 计 理 由 的 可 行 性$[]$。|
- []
+\tf@thm=\write4
+\openout4 = `test_min.thm'.
 
-[5] [6]) [7]
-第3章
-(chapters/chapter3.tex
-
-LaTeX Warning: Reference `fig:architecture' on page 8 undefined on input line 5
-.
-
-[8
-
-]
-LaTeX Font Info:    Font shape `TU/XITSMath-Regular.otf(2)/m/n' will be
-(Font)              scaled to size 7.00075pt on input line 45.
-LaTeX Font Info:    Font shape `TU/XITSMath-Regular.otf(3)/m/n' will be
-(Font)              scaled to size 6.99925pt on input line 45.
- [9]
-
-Package fontspec Info: 
-(fontspec)             Could not resolve font "FangSong/B" (it probably
-(fontspec)             doesn't exist).
+ [2
 
 
-Package fontspec Info: 
-(fontspec)             Could not resolve font "FangSong/I" (it probably
-(fontspec)             doesn't exist).
-
-
-Package fontspec Info: 
-(fontspec)             Could not resolve font "FangSong/BI" (it probably
-(fontspec)             doesn't exist).
-
-
-Package fontspec Info: 
-(fontspec)             Font family 'FangSong(0)' created for font 'FangSong'
-(fontspec)             with options
-(fontspec)             [Script={CJK},UprightFont={*},AutoFakeBold={4},ItalicFon
-t={*}].
-(fontspec)              
-(fontspec)              This font family consists of the following NFSS
-(fontspec)             series/shapes:
-(fontspec)              
-(fontspec)             - 'normal' (m/n) with NFSS spec.:
-(fontspec)             <->"FangSong/OT:script=hani;language=dflt;"
-(fontspec)             - 'bold' (b/n) with NFSS spec.:
-(fontspec)             <->"FangSong/OT:script=hani;language=dflt;embolden=4;"
-(fontspec)             - 'italic' (m/it) with NFSS spec.:
-(fontspec)             <->"FangSong/OT:script=hani;language=dflt;"
-
- [10]
-Overfull \hbox (100.96565pt too wide) in paragraph at lines 73--74
-[]\TU/SimSun(0)/m/n/12.045 在 修 改 层 面，|  仅 需 将 管 线 脚 本 中 的 \TU/texgyrecursor(0)/
-m/n/12.045 OpenAI(base_url="http://127.0.0.1:11434/v1")
- []
-
-[11]) [12]
-第4章
-(chapters/chapter4.tex
-Overfull \hbox (13.0096pt too wide) in paragraph at lines 7--8
-\TU/XITS(0)/m/n/12.045 12.7\TU/SimSun(0)/m/n/12.045 。|  大 语 言 模 型 推 理 在 单 张 \TU
-/XITS(0)/m/n/12.045 RTX 4090 \TU/SimSun(0)/m/n/12.045 上 运 行  |（通 过 \TU/texgyrec
-ursor(0)/m/n/12.045 CUDA_VISIBLE_DEVICES=0
- []
-
-[13
-
-] [14] [15]
-Overfull \hbox (18.35017pt too wide) in paragraph at lines 100--109
- [][] 
- []
-
-[16] [17]
-
-LaTeX Warning: Reference `tab:pipeline_time' on page 18 undefined on input line
- 198.
-
-[18]
-
-LaTeX Warning: Reference `tab:three_source' on page 19 undefined on input line 
-202.
-
-) [19]
-第5章
-(chapters/chapter5.tex [20
-
-] [21]) [22] (main.bbl [23
-
-
-]) [24]
-\tf@thm=\write5
-\openout5 = `main.thm'.
-
- [25
-
-]
-File: declaration.pdf Graphic file (type pdf)
-<use declaration.pdf>
-File: declaration.pdf Graphic file (type pdf)
-<use declaration.pdf, page 1>
-File: declaration.pdf Graphic file (type pdf)
-<use declaration.pdf, page 1>
-File: declaration.pdf Graphic file (type pdf)
-<use declaration.pdf, page 1>
-File: declaration.pdf Graphic file (type pdf)
-<use declaration.pdf, page 1>
-File: declaration.pdf Graphic file (type pdf)
-<use declaration.pdf, page 1>
- [26
-
-
-] (main.aux)
+] (test_min.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2022/07/14>
  ***********
 
 
-LaTeX Warning: There were undefined references.
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
-Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 6A3A69E9A38931ECFCDA6B71B6DFD5D8;6444.
+
+Package rerunfilecheck Warning: File `test_min.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `test_min.out':
+(rerunfilecheck)             Before: <no file>
+(rerunfilecheck)             After:  5340ADF1582025EC34AA7AFD66975AFF;88.
  ) 
 Here is how much of TeX's memory you used:
- 26090 strings out of 402987
- 532079 string characters out of 5453699
- 1067635 words of memory out of 5000000
- 54403 multiletter control sequences out of 15000+600000
- 636551 words of font info for 174 fonts, out of 8000000 for 9000
+ 24220 strings out of 402987
+ 485306 string characters out of 5453699
+ 1017587 words of memory out of 5000000
+ 52644 multiletter control sequences out of 15000+600000
+ 634977 words of font info for 129 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 107i,17n,109p,2167b,2169s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 107i,7n,109p,2201b,2073s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.pdf (33 pages).
+Output written on test_min.pdf (4 pages).

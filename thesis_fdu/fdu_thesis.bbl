@@ -1,4 +1,4 @@
-\begin{thebibliography}{16}
+\begin{thebibliography}{13}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{#1}
 \expandafter\ifx\csname urlstyle\endcsname\relax\else
@@ -19,14 +19,6 @@ SONG C~H, WU J, WASHINGTON C, et~al.
 \newblock arXiv (2023).
 \newblock \url{https://arxiv.org/abs/2212.04088}.
 
-\bibitem[An et~al.(2025)An, Sun, Liu, Li, Wu, Cheng, Konukoglu, and
-  Belongie]{multimodal_3d}
-AN Z, SUN G, LIU Y, et~al.
-\newblock Multimodality helps few-shot 3D point cloud semantic
-  segmentation\allowbreak[M]//\allowbreak
-Proceedings of the International Conference on Learning Representations (ICLR).
-\newblock 2025.
-
 \bibitem[Tong et~al.(2025)Tong, Tang, Li, Mou, Zhang, Zhao, Wen, Song, Zhan,
   Lu, et~al.]{code2logic}
 TONG J, TANG J, LI H, et~al.
@@ -45,6 +37,14 @@ TEAM Q.
 \newblock Qwen2.5: a party of foundation models\allowbreak[EB/OL].
 \newblock 2024.
 \newblock \url{https://qwenlm.github.io/blog/qwen2.5/}.
+
+\bibitem[An et~al.(2025)An, Sun, Liu, Li, Wu, Cheng, Konukoglu, and
+  Belongie]{multimodal_3d}
+AN Z, SUN G, LIU Y, et~al.
+\newblock Multimodality helps few-shot 3D point cloud semantic
+  segmentation\allowbreak[M]//\allowbreak
+Proceedings of the International Conference on Learning Representations (ICLR).
+\newblock 2025.
 
 \bibitem[Zhang et~al.(2022)Zhang, Zhang, Li, and Smola]{auto_cot}
 ZHANG Z, ZHANG A, LI M, et~al.
@@ -103,24 +103,5 @@ STRAUB J, WHELAN T, MA L, et~al.
 \newblock NVIDIA isaac sim 4.5\allowbreak[EB/OL].
 \newblock 2025.
 \newblock \url{https://developer.nvidia.com/isaac-sim}.
-
-\bibitem[Gerganov et~al.(2023)Gerganov and contributors]{llama_cpp}
-GERGANOV G, CONTRIBUTORS.
-\newblock llama.cpp: LLM inference in C/C++\allowbreak[EB/OL].
-\newblock 2023.
-\newblock \url{https://github.com/ggerganov/llama.cpp}.
-
-\bibitem[DeepSeek-AI(2025)]{deepseek_r1}
-DEEPSEEK-AI.
-\newblock DeepSeek-R1: incentivizing reasoning capability in LLMs via
-  reinforcement learning\allowbreak[A/OL].
-\newblock arXiv (2025).
-\newblock \url{https://arxiv.org/abs/2501.12948}.
-
-\bibitem[AI(2024)]{glm4}
-AI Z.
-\newblock GLM-4 technical report\allowbreak[EB/OL].
-\newblock 2024.
-\newblock \url{https://bigmodel.cn}.
 
 \end{thebibliography}

@@ -1,0 +1,22 @@
+% 图2: 六步标注管线
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[node distance=0.4cm,
+    sbox/.style={rectangle, draw=black, thick, rounded corners=3pt, minimum width=1.8cm, minimum height=1.3cm, align=center, font=\footnotesize, fill=blue!5}]
+\node[sbox] (s1) {RGB-D\\序列};
+\node[sbox, right=of s1] (s2) {GradSLAM\\3D重建};
+\node[sbox, right=of s2] (s3) {Grounded-\\SAM分割};
+\node[sbox, right=of s3] (s4) {CF-SLAM\\3D建图};
+\node[sbox, right=of s4] (s5) {LLaVA v1.5\\物体描述};
+\node[sbox, right=of s5, fill=green!10] (s6) {llama.cpp\\GPU优化};
+\node[sbox, right=of s6, fill=gray!15] (s7) {QA数据集};
+\draw[->, >=stealth, thick] (s1) -- (s2);
+\draw[->, >=stealth, thick] (s2) -- (s3);
+\draw[->, >=stealth, thick] (s3) -- (s4);
+\draw[->, >=stealth, thick] (s4) -- (s5);
+\draw[->, >=stealth, thick] (s5) -- (s6);
+\draw[->, >=stealth, thick] (s6) -- (s7);
+\end{tikzpicture}
+\caption{六步自动标注管线。}
+\label{fig:pipeline}
+\end{figure}

@@ -1,0 +1,24 @@
+% 图4: Caption过滤原因分布
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=1.0]
+% Simple pie: 4 slices
+% Passed: 170.3 degrees (47.3%), Truncated: 140.4 (39.0%), Atmosphere: 47.5 (13.2%), Short: 1.4 (0.4%)
+\fill[green!30, draw=black, thick] (0,0) -- (0:2.5) arc (0:170.3:2.5) -- cycle;
+\fill[red!30, draw=black, thick] (0,0) -- (170.3:2.5) arc (170.3:310.7:2.5) -- cycle;
+\fill[orange!30, draw=black, thick] (0,0) -- (310.7:2.5) arc (310.7:358.2:2.5) -- cycle;
+\fill[gray!20, draw=black, thick] (0,0) -- (358.2:2.5) arc (358.2:360:2.5) -- cycle;
+% Labels
+\node[font=\small] at (85:1.4) {47.3\%};
+\node[font=\small] at (240:1.4) {39.0\%};
+\node[font=\small] at (335:1.8) {13.2\%};
+\node[font=\small] at (359:1.2) {0.4\%};
+% Legend
+\node[font=\footnotesize, right] at (3.2, 1.0) {通过过滤: 47.3\% (255)};
+\node[font=\footnotesize, right] at (3.2, 0.5) {截断: 39.0\% (210)};
+\node[font=\footnotesize, right] at (3.2, 0.0) {氛围词: 13.2\% (71)};
+\node[font=\footnotesize, right] at (3.2,-0.5) {过短: 0.4\% (2)};
+\end{tikzpicture}
+\caption{LLaVA caption 质量过滤原因分布（7场景，539条）。}
+\label{fig:error_pie}
+\end{figure}

@@ -1,0 +1,16 @@
+% 图1: 三层系统架构
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[node distance=0.8cm,
+    box/.style={rectangle, draw=black, thick, minimum width=10cm, minimum height=1.2cm, align=center, font=\small}]
+\node[box, fill=blue!8] (cl) {{\bf 数据合成层 -- Code2Logic}\\{游戏代码解析 $\to$ 模板填充 $\to$ 结构化 QA}};
+\node[box, fill=green!8, below=of cl] (cg) {{\bf 场景理解层 -- Concept-Graphs}\\{SLAM $\to$ SAM $\to$ CF-SLAM $\to$ LLaVA $\to$ LLM $\to$ QA}};
+\node[box, fill=orange!8, below=of cg] (is) {{\bf 真值验证层 -- Isaac Sim}\\{USD 场景生成 $\to$ 域随机化 $\to$ 几何真值导出}};
+\node[box, fill=gray!10, below=of is] (out) {{\bf 输出: 结构化 QA 数据集 (2395 条, 5 种推理类型)}};
+\draw[->, >=stealth, thick] (cl) -- (cg) node[midway, right] {\footnotesize 方法迁移};
+\draw[->, >=stealth, thick] (cg) -- (is) node[midway, right] {\footnotesize 真值校准};
+\draw[->, >=stealth, thick] (is) -- (out);
+\end{tikzpicture}
+\caption{系统三层架构。}
+\label{fig:architecture}
+\end{figure}

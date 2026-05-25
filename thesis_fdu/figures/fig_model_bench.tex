@@ -1,0 +1,25 @@
+% 图3: 模型基准测试
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=0.85]
+\draw[->, thick] (0,0) -- (10.5,0) node[right] {\footnotesize tok/s};
+% Bars
+\fill[blue!30, draw=black] (0,0.15) rectangle (4.59,0.65);
+\node[font=\footnotesize, left=0.1cm] at (0,0.4) {Qwen2.5-14B};
+\node[font=\footnotesize] at (4.89,0.4) {45.9};
+\fill[blue!30, draw=black] (0,0.85) rectangle (6.80,1.35);
+\node[font=\footnotesize, left=0.1cm] at (0,1.1) {GLM-4-9B};
+\node[font=\footnotesize] at (7.10,1.1) {68.0};
+\fill[blue!30, draw=black] (0,1.55) rectangle (7.10,2.05);
+\node[font=\footnotesize, left=0.1cm] at (0,1.8) {Qwen2.5-7B};
+\node[font=\footnotesize] at (7.40,1.8) {71.0};
+\fill[blue!30, draw=black] (0,2.25) rectangle (9.42,2.75);
+\node[font=\footnotesize, left=0.1cm] at (0,2.5) {DeepSeek-R1-7B};
+\node[font=\footnotesize] at (9.72,2.5) {94.2};
+\fill[green!30, draw=black] (0,2.95) rectangle (8.62,3.45);
+\node[font=\footnotesize, left=0.1cm] at (0,3.2) {Qwen2.5-3B (最优)};
+\node[font=\footnotesize] at (8.92,3.2) {86.2};
+\end{tikzpicture}
+\caption{5款模型描述优化速度对比（RTX 4090）。}
+\label{fig:model_bench}
+\end{figure}
