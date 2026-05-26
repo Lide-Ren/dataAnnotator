@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.12) (preloaded format=xelatex 2026.5.18)  26 MAY 2026 01:24
+This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.12) (preloaded format=xelatex 2026.5.18)  26 MAY 2026 15:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1893,31 +1893,18 @@ t={*}].
 
 ] [5]
 第1章
-(chapters/chapter1.tex [1
+(chapters/chapter1.tex
+Overfull \hbox (18.24149pt too wide) in paragraph at lines 9--10
+[]\TU/XITS(0)/m/n/12.045 Tong \TU/SimSun(0)/m/n/12.045 等 人$[]$ 从 游 戏 领 域 找 到 了 
+一 条 有 意 思 的 解 决 路 径。|  他 们 提 出 的 \TU/XITS(0)/m/n/12.045 Code2Logic
+ []
+
+[1
 
 
-]
-! Undefined control sequence.
-l.30 \section{关键术语与问题边界}\n
-                          \n在进入具体的技术内容之前先明确几个关键概念和本文的问题边界。本文中的标注数据指结构化的视觉问答格...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-l.30 ...键术语与问题边界}\n\n在进入具体的技术内容之前先明确几个关键概念和本文的问题边界
-                                                  。本文中的标注数据指结构化的视觉问答格式的数据，每条...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-) [2]
+] [2]) [3]
 第2章
-(chapters/chapter2.tex [3
+(chapters/chapter2.tex [4
 
 ]
 
@@ -1952,7 +1939,7 @@ t={*}].
 (fontspec)             - 'italic' (m/it) with NFSS spec.:
 (fontspec)             <->"FangSong/OT:script=hani;language=dflt;"
 
- [4] [5]) [6]
+ [5] [6]) [7]
 第3章
 (chapters/chapter3.tex (figures/fig_architecture.tex
 LaTeX Font Info:    Font shape `TU/XITSMath-Regular.otf(2)/m/n' will be
@@ -1964,36 +1951,43 @@ Overfull \hbox (18.05951pt too wide) in paragraph at lines 19--20
  [][] 
  []
 
-) [7
+) [8
 
-] [8]) [9]
+] [9] [10]) [11]
 第4章
-(chapters/chapter4.tex [10
+(chapters/chapter4.tex [12
 
-] [11] (figures/fig_error_pie.tex)
+] [13] (figures/fig_error_pie.tex)
 Overfull \hbox (18.35017pt too wide) in paragraph at lines 94--103
  [][] 
  []
 
-[12] (figures/fig_model_bench.tex) [13] [14]
+[14] (figures/fig_model_bench.tex) [15] [16]
 Overfull \hbox (11.84834pt too wide) in paragraph at lines 211--225
  [][] 
  []
 
-[15]
+[17]
 Overfull \hbox (3.0573pt too wide) in paragraph at lines 255--256
 []\TU/SimSun(0)/m/it/12.045 注：| \TU/XITS(0)/m/it/12.045 TP=Target Perception, S
 P=State Prediction, SR=Spatial Reasoning, SC=Scene
  []
 
-[16]) [17]
+[18]) [19]
 第5章
-(chapters/chapter5.tex [18
+(chapters/chapter5.tex [20
 
-]) [19] (fdu_thesis.bbl [20
+]
+Overfull \hbox (1.68098pt too wide) in paragraph at lines 33--34
+[]\TU/SimSun(0)/m/it/12.045 下 游 训 练 验 证 是 检 验 数 据 质 量 的 终 极 方 式。|  将 \TU/XITS(0
+)/m/n/12.045 2395 \TU/SimSun(0)/m/it/12.045 条 \TU/XITS(0)/m/n/12.045 QA \TU/Sim
+Sun(0)/m/it/12.045 用 于 微 调 \TU/XITS(0)/m/n/12.045 Qwen2.5-
+ []
+
+) [21] [22] (fdu_thesis.bbl [23
 
 
-]) [21] [22
+]) [24] [25
 
 ]
 Overfull \hbox (50.79727pt too wide) in paragraph at lines 145--145
@@ -2055,7 +2049,7 @@ Overfull \hbox (94.15927pt too wide) in paragraph at lines 160--160
 ype>", "reason": "<brief>"}][] 
  []
 
-[23
+[26
 
 ]
 Overfull \hbox (77.29625pt too wide) in paragraph at lines 160--160
@@ -2063,7 +2057,7 @@ Overfull \hbox (77.29625pt too wide) in paragraph at lines 160--160
 relationship. Do not guess.[] 
  []
 
-[24]
+[27]
 Overfull \hbox (21.88928pt too wide) in paragraph at lines 184--184
 []  \TU/texgyrecursor(0)/m/n/12.045 "question": "Where is object <dst> relative
  to object <src>?",[] 
@@ -2072,7 +2066,7 @@ Overfull \hbox (21.88928pt too wide) in paragraph at lines 184--184
 \tf@thm=\write6
 \openout6 = `fdu_thesis.thm'.
 
-[25
+[28
 
 ]
 File: declaration.pdf Graphic file (type pdf)
@@ -2087,7 +2081,7 @@ File: declaration.pdf Graphic file (type pdf)
 <use declaration.pdf, page 1>
 File: declaration.pdf Graphic file (type pdf)
 <use declaration.pdf, page 1>
- [26
+ [29
 
 
 ] (fdu_thesis.aux)
@@ -2096,15 +2090,15 @@ LaTeX2e <2025-11-01>
 L3 programming layer <2022/07/14>
  ***********
 Package rerunfilecheck Info: File `fdu_thesis.out' has not changed.
-(rerunfilecheck)             Checksum: CFDCE913603A450F90BD01EDC2A71531;6251.
+(rerunfilecheck)             Checksum: BCECF6D14A0DC44A7878BB4E29D6FCA9;6420.
  ) 
 Here is how much of TeX's memory you used:
- 37152 strings out of 402987
- 779236 string characters out of 5453699
- 1277230 words of memory out of 5000000
- 65252 multiletter control sequences out of 15000+600000
+ 37140 strings out of 402987
+ 778460 string characters out of 5453699
+ 1274231 words of memory out of 5000000
+ 65240 multiletter control sequences out of 15000+600000
  636471 words of font info for 164 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  107i,17n,109p,2167b,2508s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on fdu_thesis.pdf (33 pages).
+Output written on fdu_thesis.pdf (36 pages).
